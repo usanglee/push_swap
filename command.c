@@ -1,20 +1,20 @@
 #include "push_swap.h"
 
-void	swap(t_li **li, int flag)
+void	swap(t_li **li)
 {
+	t_li *first_node;
+
 	if (*li == NULL || (*li)->next == NULL)
 		return ;
+	first_node = *li;	
 	*li = (*li)->next;
-	(*li)->prev->next = (*li)->next;
-	(*li)->prev->prev = *li;
-	if ((*li)->next != NULL)
-		(*li)->next->prev = (*li)->prev;
-	(*li)->next = (*li)->prev;
-	(*li)->prev = NULL;
-	if (flag == 'a')
-		ft_printf("sa\n");
-	else if (flag == 'b')
-		ft_printf("sb\n");
+	if ((*li)->next != first_node)
+	{
+		first_node->next = (*li)->next;
+		(*li)->next = first_node;
+   		(*li)->prev = first_node->prev;
+	   	first_node->prev = *li;
+	}
 }
 
 void	push(t_li **src, t_li **dest, int flag)
@@ -75,13 +75,13 @@ void	reverse(t_li **li, int flag)
 
 void	command(t_info *io, char *str)
 {
-	if (!ft_strcmp(str, "sa"))
-		swap(&(io->a), 'a');
-	else if (!ft_strcmp(str, "sb"))
-		swap(&(io->b), 'b');
-	else if (!ft_strcmp(str, "ss"))
-		swap_both(&(io->a), &(io->b));
-	else if (!ft_strcmp(str, "pa"))
+//	if (!ft_strcmp(str, "sa"))
+	//	swap(&(io->a), 'a');
+	// else if (!ft_strcmp(str, "sb"))
+	// 	swap(&(io->b), 'b');
+	// else if (!ft_strcmp(str, "ss"))
+	//		swap_both(&(io->a), &(io->b));
+	if (!ft_strcmp(str, "pa"))
 		push(&(io->b), &(io->a), 'a');
 	else if (!ft_strcmp(str, "pb"))
 		push(&(io->a), &(io->b), 'b');
@@ -101,3 +101,4 @@ void	command(t_info *io, char *str)
 		print_error("command");
 
 }
+

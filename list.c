@@ -11,34 +11,21 @@ t_li	*list_new(int num)
 	return (li);
 }
 
-t_li	*list_last(t_li *li)
-{
-	if (li == NULL)
-		return (NULL);
-	while (li->next != NULL)
-		li = li->next;
-	return (li);
-}
-
 void	list_add(t_li **li, t_li *new)
 {
+	t_li *last_node;
+
 	if (*li == NULL)
 	{
 		*li = new;
 		return ;
 	}
-	new->prev = list_last(*li);
-	list_last(*li)->next = new;
-}
-
-int	list_len(t_li *li)
-{
-	int len = 0;
-
-	while (li)
-	{
-		len++;
-		li = li->next;
-	}
-	return (len);
+	if ((*li)->prev != NULL)
+		last_node = (*li)->prev;
+	else
+		last_node = *li;
+	new->prev = last_node;
+	last_node->next = new;
+	new->next = *li;
+	(*li)->prev = new;
 }
