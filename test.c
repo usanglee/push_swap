@@ -19,10 +19,28 @@ void    swap(t_li **li)
     }
 }
 
+void	push(t_li **src, t_li **dest)
+{
+	t_li *move_node;
+
+	if (*src == NULL)
+		return ;
+	if (*dest == NULL)
+	{
+		*src = (*src)->next;
+
+	}
+
+	move_node = *src;
+	*src = (*src)->next;
+	(*src)->prev = move_node->prev;
+	move_node->prev = (*dset)->prev;
+	move_node->next = *dest;
+	*dest = move_node;
+}
 int main()
 {
 	t_li *temp;
 	temp = list_new(10);
-	list_add(&temp, list_new(20));
 	swap(&temp);
 }

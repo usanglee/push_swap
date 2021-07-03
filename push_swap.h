@@ -41,7 +41,7 @@ t_li	*list_last(t_li *li);
 void	list_add(t_li **li, t_li *new);
 
 void	swap(t_li **li);
-void	push(t_li **src, t_li **dest, int flag);
+void	push(t_li **src, t_li **dest);
 void	rotate(t_li **li, int flag);
 void	reverse(t_li **li, int flag);
 void	command(t_info *io, char *str);

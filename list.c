@@ -6,8 +6,8 @@ t_li	*list_new(int num)
 
 	li = malloc(sizeof(t_li));
 	li->data = num;
-	li->prev = NULL;
-	li->next = NULL;
+	li->prev = li;
+	li->next = li;
 	return (li);
 }
 
@@ -20,10 +20,7 @@ void	list_add(t_li **li, t_li *new)
 		*li = new;
 		return ;
 	}
-	if ((*li)->prev != NULL)
-		last_node = (*li)->prev;
-	else
-		last_node = *li;
+	last_node = (*li)->prev;
 	new->prev = last_node;
 	last_node->next = new;
 	new->next = *li;
