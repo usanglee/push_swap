@@ -11,7 +11,7 @@ void	make_list(t_info *io)
 		num = ft_atol(io->split[i]);
 		if (num < -2147483648 || num > 2147483647)
 			print_error("make_list");
-		list_add(&(io->a), list_new((int)num));
+		list_add(&(io->a), node_new((int)num));
 		i++;
 	}
 	two_arr_free(io->split);
@@ -19,7 +19,7 @@ void	make_list(t_info *io)
 
 void	make_arr(t_info *io)
 {
-	t_li *temp_li;
+	t_node *temp_li;
 	int i;
 	int sort_flag;
 	int before;

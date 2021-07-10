@@ -1,44 +1,72 @@
 #include "push_swap.h"
 
-t_li	*list_new(int num)
+t_node	*node_new(int num)
 {
-	t_li *li;
+	t_node *node;
 
-	li = malloc(sizeof(t_li));
-	li->data = num;
-	li->prev = NULL;
-	li->next = NULL;
-	return (li);
+	node = ft_salloc(1, sizeof(t_node));
+	node->data = num;
+	node->prev = NULL;
+	node->next = NULL;
+	return (node);
 }
 
-t_li	*list_last(t_li *li)
+void	push_front(t_deque *deque, t_node *node)
 {
-	if (li == NULL)
-		return (NULL);
-	while (li->next != NULL)
-		li = li->next;
-	return (li);
-}
-
-void	list_add(t_li **li, t_li *new)
-{
-	if (*li == NULL)
+	if (deque == NULL || node == NULL)
+		return ;
+	if (deque->top == NULL || deque->bottom == NULL)
 	{
-		*li = new;
+		deque->top = node;
+		deque->bottom = node;
 		return ;
 	}
-	new->prev = list_last(*li);
-	list_last(*li)->next = new;
+	node->next = deque->top;
+	deque->top->prev = node;
+	node->prev = NULL;
+	deque->top = node;
 }
 
-int	list_len(t_li *li)
+void	push_back(t_deque *deque, t_node *node)
 {
-	int len = 0;
-
-	while (li)
+	if (deque == NULL || node == NULL)
+		return ;
+	if (deque->top == NULL || deque->bottom == NULL)
 	{
-		len++;
-		li = li->next;
+		deque->top = node;
+		deque->bottom = node;
+		return ;
 	}
-	return (len);
+	deque->bottom->next = node;
+	node->prev = deque->bottom;
+	node->next = NULL;
+	deque->bottom = node;
+}
+
+void	remove_front(t_deque *deque)
+{
+	if (deque == NULL)
+		return ;
+	if (deque->top == deque->bottom)
+	{
+		deque->top == NULL;
+		deque->bottom == NULL;
+		return ;
+	}
+	deque->top = deque->top->next;
+	deque->top->prev = NULL;
+}
+
+void	remove_back(t_deque *deque)
+{
+	if (deque == NULL)
+		return ;
+	if (deque->top == deque->bottom)
+	{
+		deque->top == NULL;
+		deque->bottom == NULL;
+		return ;
+	}
+	deque->bottom = deque->bottom->prev;
+	deque->bottom->next = NULL;
 }

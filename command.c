@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	swap(t_li **li, int flag)
+void	swap(t_node **li, int flag)
 {
 	if (*li == NULL || (*li)->next == NULL)
 		return ;
@@ -17,7 +17,7 @@ void	swap(t_li **li, int flag)
 		ft_printf("sb\n");
 }
 
-void	push(t_li **src, t_li **dest, int flag)
+void	push(t_node **src, t_node **dest, int flag)
 {
 	if (*src == NULL)
 		return ;
@@ -43,7 +43,7 @@ void	push(t_li **src, t_li **dest, int flag)
 		ft_printf("pb\n");
 }
 
-void	rotate(t_li **li, int flag)
+void	rotate(t_node **li, int flag)
 {
 	if (*li == NULL | (*li)->next == NULL)
 		return ;
@@ -58,7 +58,7 @@ void	rotate(t_li **li, int flag)
 		ft_printf("rb\n");
 }
 
-void	reverse(t_li **li, int flag)
+void	reverse(t_node **li, int flag)
 {
 	if (*li == NULL | (*li)->next == NULL)
 		return ;

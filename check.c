@@ -75,7 +75,7 @@ void		check_duplicate(t_info *io)
 	}
 }
 
-int		check_sort(t_li *li)
+int		check_sort(t_node *li)
 {
 	int			i;
 	long long	before;
@@ -92,7 +92,7 @@ int		check_sort(t_li *li)
 	return (1);
 }
 
-int		r_check_sort(t_li *li)
+int		r_check_sort(t_node *li)
 {
 	int			i;
 	long long	before;

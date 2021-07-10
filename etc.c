@@ -6,7 +6,18 @@ void	print_error(char *str)
 	exit(1);
 }
 
-void	list_print(t_li *a, t_li *b)
+void	*ft_salloc(size_t n, size_t size)
+{
+	void	*ret;
+
+	ret = (char *)malloc(size * n);
+	if (!ret)
+		print_error("malloc error");
+	ft_memset(ret, 0, (n * size));
+	return (ret);
+}
+
+void	list_print(t_node *a, t_node *b)
 {
 	ft_printf("stack A   ");
 	while (a != NULL)

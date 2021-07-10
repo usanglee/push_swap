@@ -16,7 +16,7 @@ int		main(int ac, char **av)
 	sort_arr(io.arr, 0, io.len_arg - 1);
 	check_duplicate(&io);
 
-	t_li *temp;
+	t_node *temp;
 	while (io.a)
 	{
 		temp = io.a;

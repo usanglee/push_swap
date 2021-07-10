@@ -2,7 +2,7 @@
 
 void	set_cost_move(t_info *io)
 {
-	t_li *node;
+	t_node *node;
 	int i;
 
 	i = 0;
@@ -29,8 +29,8 @@ void	set_cost_move(t_info *io)
 
 void	set_cost_sort(t_info *io)
 {
-	t_li *top_node;
-	t_li *stack_b;
+	t_node *top_node;
+	t_node *stack_b;
 	int i;
 
 	i = 0;
@@ -73,7 +73,7 @@ int		get_min_node(t_info *io)
 	unsigned int min;
 	int i;
 	int node_value;
-	t_li *stack_a;
+	t_node *stack_a;
 
 	stack_a = io->a;
 	min = 2147483648;
@@ -91,7 +91,7 @@ int		get_min_node(t_info *io)
 
 void	raise_node(t_info *io)
 {
-	t_li *stack_a;
+	t_node *stack_a;
 	int min_node_value;
 	int i;
 	int count;
