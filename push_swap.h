@@ -27,8 +27,8 @@ typedef struct		s_deque
 	t_node	*top;
 	t_node	*bottom;
 	int				size;
-}
-					t_deque;
+}					t_deque;
+
 typedef struct		s_info
 {
 	t_deque		*a;
@@ -83,6 +83,11 @@ void	sort_node(t_info *io);
 
 void	*ft_salloc(size_t n, size_t size);
 
+t_node	*node_new(int num);
 
+void	push_front(t_deque *deque, t_node *node);
+void	push_back(t_deque *deque, t_node *node);
+void	remove_front(t_deque *deque);
+void	remove_back(t_deque *deque);
 
 #endif

@@ -8,15 +8,15 @@
 			"name": "gcc - Build and debug active file",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/push_swap",
+			"program": "${workspaceFolder}/b.out",
 			"args": [
-				"-10 7 -1 0 -9 3 9 -5 -7 2 -3 -6 -2 4 -8 5 6 8 -4 1"
+				// "-10 7 -1 0 -9 3 9 -5 -7 2 -3 -6 -2 4 -8 5 6 8 -4 1"
 			],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"externalConsole": false,
 			"MIMode": "lldb",
-			"preLaunchTask": "gcc build active file"
+			// "preLaunchTask": "gcc build active file"
 		}
 	]
 }

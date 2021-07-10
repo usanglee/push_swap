@@ -28,11 +28,18 @@ FILE = 	main\
 		make\
 		sort_arr\
 		sort
-# FILE_C = checker\
+
+TEST = 	test\
+		list\
+		etc\
+# FILE_C = checker
 
 
 SRCS = $(addprefix ./, $(addsuffix .c, $(FILE)))
 OBJS = $(addprefix ./, $(addsuffix .o, $(FILE)))
+
+SRCS_T = $(addprefix ./, $(addsuffix .c, $(TEST)))
+OBJS_T = $(addprefix ./, $(addsuffix .o, $(TEST)))
 
 # SRCS_C = $(addprefix ./, $(addsuffix .c, $(FILE_C)))
 # OBJS_C = $(addprefix ./, $(addsuffix .o, $(FILE_C)))
@@ -48,6 +55,10 @@ $(NAME_C) : $(OBJS_C)
 	make -C ./libft
 	$(CC) $(LIBFT) $(OBJS_C) -o $@
 
+test : $(OBJS_T)
+	make -C ./libft
+	$(CC) $(LIBFT) $(OBJS_T) -o b.out
+
 all : $(NAME)
 
 bonus : $(NAME_C)
@@ -55,7 +66,8 @@ bonus : $(NAME_C)
 clean:
 	make -C ./libft clean
 	$(RM) $(OBJS)
-	# $(RM) $(OBJS_C)
+	$(RM) $(OBJS_T)
+	$(RM) a.out
 
 fclean: clean
 	$(RM) $(NAME)

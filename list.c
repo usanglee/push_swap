@@ -49,8 +49,8 @@ void	remove_front(t_deque *deque)
 		return ;
 	if (deque->top == deque->bottom)
 	{
-		deque->top == NULL;
-		deque->bottom == NULL;
+		deque->top = NULL;
+		deque->bottom = NULL;
 		return ;
 	}
 	deque->top = deque->top->next;
@@ -63,8 +63,8 @@ void	remove_back(t_deque *deque)
 		return ;
 	if (deque->top == deque->bottom)
 	{
-		deque->top == NULL;
-		deque->bottom == NULL;
+		deque->top = NULL;
+		deque->bottom = NULL;
 		return ;
 	}
 	deque->bottom = deque->bottom->prev;
