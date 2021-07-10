@@ -13,16 +13,13 @@ int main()
     push_back(io.a, node_new(1));
     push_back(io.a, node_new(2));
     push_back(io.a, node_new(3));
-    push_back(io.b, node_new(4));
-    // ft_printf("%d\n", io.a->top->data);
-    // ft_printf("%d\n", io.b->top->data);
-    push(io.a, io.b, ' ');
-    push(io.a, io.b, ' ');
-    ft_printf("%d\n\n", io.a->top->data);
-    ft_printf("%d\n\n", io.a->bottom->data);
-    ft_printf("%d\n", io.b->top->data);
-    ft_printf("%d\n", io.b->top->next->data);
-    ft_printf("%d\n", io.b->bottom->data);
+    push_back(io.a, node_new(4));
+    reverse(io.a, ' ');
+    reverse(io.a, ' ');
+    ft_printf("%d\n", io.a->top->data);
+    ft_printf("%d\n", io.a->top->next->data);
+    ft_printf("%d\n", io.a->top->next->next->data);
+    ft_printf("%d\n", io.a->bottom->data);
 
     // push_front(io.a, node_new(3));
     // ft_printf("%d\n", io.a->top->data);

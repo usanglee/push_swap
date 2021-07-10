@@ -40,35 +40,33 @@ void	push(t_deque *src, t_deque *dest, int flag)
 		ft_printf("pb\n");
 }
 
-// void	rotate(t_node **li, int flag)
-// {
-// 	if (*li == NULL | (*li)->next == NULL)
-// 		return ;
-// 	*li = (*li)->next;
-// 	(*li)->prev->prev = list_last(*li);
-// 	list_last(*li)->next = (*li)->prev;
-// 	(*li)->prev->next = NULL;
-// 	(*li)->prev = NULL;
-// 	if (flag == 'a')
-// 		ft_printf("ra\n");
-// 	else if (flag == 'b')
-// 		ft_printf("rb\n");
-// }
+void	rotate(t_deque *deque, int flag)
+{
+	if (deque == NULL)
+		return ;
+	if (deque->size == 0 || deque->size == 1)
+		return ;
+	push_back(deque, node_new(deque->top->data));
+	remove_front(deque);
+	if (flag == 'a')
+		ft_printf("ra\n");
+	else if (flag == 'b')
+		ft_printf("rb\n");
+}
 
-// void	reverse(t_node **li, int flag)
-// {
-// 	if (*li == NULL | (*li)->next == NULL)
-// 		return ;
-// 	(*li)->prev = list_last(*li);
-// 	(*li)->prev->next = (*li);
-// 	(*li)->prev->prev->next = NULL;
-// 	(*li) = (*li)->prev;
-// 	(*li)->prev = NULL;
-// 	if (flag == 'a')
-// 		ft_printf("rra\n");
-// 	else if (flag == 'b')
-// 		ft_printf("rrb\n");
-// }
+void	reverse(t_deque *deque, int flag)
+{
+	if (deque == NULL)
+		return ;
+	if (deque->size == 0 || deque->size == 1)
+		return ;
+	push_front(deque, node_new(deque->bottom->data));
+	remove_back(deque);
+	if (flag == 'a')
+		ft_printf("rra\n");
+	else if (flag == 'b')
+		ft_printf("rrb\n");
+}
 
 // void	command(t_info *io, char *str)
 // {

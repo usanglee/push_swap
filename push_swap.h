@@ -46,8 +46,8 @@ void	swap(t_deque *deque, int flag);
 
 void	push(t_deque *src, t_deque *dest, int flag);
 
-void	rotate(t_node **li, int flag);
-void	reverse(t_node **li, int flag);
+void	rotate(t_deque *deque, int flag);
+void	reverse(t_deque *deque, int flag);
 void	command(t_info *io, char *str);
 
 
