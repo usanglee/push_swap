@@ -3,6 +3,8 @@
 int		main(int ac, char **av)
 {
 	t_info io;
+	io.a = ft_salloc(1, sizeof(t_deque));
+    io.b = ft_salloc(1, sizeof(t_deque));
 
 	if (ac <= 1)
 		return (0);
@@ -15,22 +17,10 @@ int		main(int ac, char **av)
 	make_arr(&io);
 	sort_arr(io.arr, 0, io.len_arg - 1);
 	check_duplicate(&io);
-
-	t_node *temp;
-	while (io.a)
+	rotate(io.a, ' ');
+	while (io.a->top)
 	{
-		temp = io.a;
-		while (temp)
-		{
-			temp->cost_move = 0;
-			temp->cost_sort = 0;
-			temp->reverse_move = 0;
-			temp->reverse_sort = 0;
-			temp = temp->next;
-		}
-		set_cost_move(&io);
-		set_cost_sort(&io);
-		raise_node(&io);
-		sort_node(&io);
+		ft_printf("%d\n", io.a->top->data);
+		io.a->top = io.a->top->next;
 	}
 }

@@ -27,7 +27,7 @@ FILE = 	main\
 		check\
 		make\
 		sort_arr\
-		sort
+		# sort
 
 TEST = 	test\
 		list\
