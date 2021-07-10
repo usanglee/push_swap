@@ -32,6 +32,7 @@ FILE = 	main\
 TEST = 	test\
 		list\
 		etc\
+		command
 # FILE_C = checker
 
 
@@ -57,7 +58,7 @@ $(NAME_C) : $(OBJS_C)
 
 test : $(OBJS_T)
 	make -C ./libft
-	$(CC) $(LIBFT) $(OBJS_T) -o b.out
+	$(CC) $(LIBFT) $(OBJS_T) -o a.out
 
 all : $(NAME)
 

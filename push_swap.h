@@ -42,7 +42,8 @@ t_node	*node_new(int num);
 t_node	*list_last(t_node *li);
 void	list_add(t_node **li, t_node *new);
 
-void	swap(t_node **li, int flag);
+void	swap(t_deque *deque, int flag);
+
 void	push(t_node **src, t_node **dest, int flag);
 void	rotate(t_node **li, int flag);
 void	reverse(t_node **li, int flag);

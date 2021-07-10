@@ -19,12 +19,14 @@ void	push_front(t_deque *deque, t_node *node)
 	{
 		deque->top = node;
 		deque->bottom = node;
+		deque->size++;
 		return ;
 	}
 	node->next = deque->top;
 	deque->top->prev = node;
 	node->prev = NULL;
 	deque->top = node;
+	deque->size++;
 }
 
 void	push_back(t_deque *deque, t_node *node)
@@ -35,12 +37,14 @@ void	push_back(t_deque *deque, t_node *node)
 	{
 		deque->top = node;
 		deque->bottom = node;
+		deque->size++;
 		return ;
 	}
 	deque->bottom->next = node;
 	node->prev = deque->bottom;
 	node->next = NULL;
 	deque->bottom = node;
+	deque->size++;
 }
 
 void	remove_front(t_deque *deque)
@@ -51,10 +55,12 @@ void	remove_front(t_deque *deque)
 	{
 		deque->top = NULL;
 		deque->bottom = NULL;
+		deque->size--;
 		return ;
 	}
 	deque->top = deque->top->next;
 	deque->top->prev = NULL;
+	deque->size--;
 }
 
 void	remove_back(t_deque *deque)
@@ -69,4 +75,5 @@ void	remove_back(t_deque *deque)
 	}
 	deque->bottom = deque->bottom->prev;
 	deque->bottom->next = NULL;
+	deque->size--;
 }
