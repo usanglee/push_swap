@@ -26,31 +26,19 @@ void	swap(t_deque *deque, int flag)
 		ft_printf("sb\n");
 }
 
-// void	push(t_node **src, t_node **dest, int flag)
-// {
-// 	if (*src == NULL)
-// 		return ;
-// 	if (*dest == NULL)
-// 	{
-// 		*dest = *src;
-// 		*src = (*src)->next;
-// 		(*src)->prev = NULL;
-// 		(*dest)->next = NULL;
-// 	}
-// 	else
-// 	{
-// 		(*dest)->prev = *src;
-// 		*src = (*src)->next;
-// 		if (*src != NULL)
-// 			(*src)->prev = NULL;
-// 		(*dest)->prev->next = *dest;
-// 		*dest = (*dest)->prev;
-// 	}
-// 	if (flag == 'a')
-// 		ft_printf("pa\n");
-// 	else if (flag == 'b')
-// 		ft_printf("pb\n");
-// }
+void	push(t_deque *src, t_deque *dest, int flag)
+{
+	if (src == NULL || dest == NULL)
+		return ;
+	if (src->size == 0)
+		return ;
+	push_front(dest, node_new(src->top->data));
+	remove_front(src);
+	if (flag == 'a')
+		ft_printf("pa\n");
+	else if (flag == 'b')
+		ft_printf("pb\n");
+}
 
 // void	rotate(t_node **li, int flag)
 // {

@@ -15,7 +15,7 @@ void	push_front(t_deque *deque, t_node *node)
 {
 	if (deque == NULL || node == NULL)
 		return ;
-	if (deque->top == NULL || deque->bottom == NULL)
+	if (deque->size == 0)
 	{
 		deque->top = node;
 		deque->bottom = node;

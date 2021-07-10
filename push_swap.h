@@ -44,7 +44,8 @@ void	list_add(t_node **li, t_node *new);
 
 void	swap(t_deque *deque, int flag);
 
-void	push(t_node **src, t_node **dest, int flag);
+void	push(t_deque *src, t_deque *dest, int flag);
+
 void	rotate(t_node **li, int flag);
 void	reverse(t_node **li, int flag);
 void	command(t_info *io, char *str);
