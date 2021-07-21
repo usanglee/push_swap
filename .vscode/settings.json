@@ -1,13 +1,6 @@
 {
-	"files.associations": {
-		"istream": "cpp",
-		"locale": "cpp",
-		"algorithm": "c",
-		"push_swap.h": "c",
-		"__node_handle": "c",
-		"array": "c",
-		"string": "c",
-		"string_view": "c",
-		"vector": "c"
-	}
+    "files.associations": {
+        "push_swap.h": "c",
+        "libft.h": "c"
+    }
 }

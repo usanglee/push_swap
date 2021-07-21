@@ -1,210 +1,152 @@
 #include "push_swap.h"
 
-void	set_cost_move(t_info *io)
+void	small_sort_a(t_info *io, int size)
 {
-	t_node *node;
-	int i;
-
-	i = 0;
-	node = io->a;
-	while (node)
+	if (size == 3)
+		mini_sort_3_a(io);
+	else if (size == 2)
 	{
-		node->cost_move = i;
-		node = node->next;
-		i++;
-	}
-	node = list_last(io->a);
-	i = 1;
-	while (node)
-	{
-		if (i < node->cost_move)
+		if (io->a->size >= 2 && io->a->top->data
+			> io->a->top->next->data)
 		{
-			node->cost_move = i;
-			node->reverse_move = 1;
-		}
-		node = node->prev;
-		i++;
-	}
-}
-
-void	set_cost_sort(t_info *io)
-{
-	t_node *top_node;
-	t_node *stack_b;
-	int i;
-
-	i = 0;
-	top_node = io->a;
-	while (top_node)
-	{
-		i = 0;
-		stack_b = io->b;
-		while (stack_b)
-		{
-			if (top_node->data > stack_b->data)
-				break;
-			i++;
-			stack_b = stack_b->next;
-		}
-		top_node->cost_sort = i;
-		if (i == 1)
-			top_node->cost_sort = 2;
-
-		stack_b = list_last(io->b);
-		i = 0;
-		while (stack_b)
-		{
-			if (top_node->data < stack_b->data)
-				break;
-			i++;
-			stack_b = stack_b->prev;
-		}
-		if (top_node->cost_sort > i)
-		{
-			top_node->reverse_sort = 1;
-			top_node->cost_sort = i;
-		}
-		top_node = top_node->next;
-	}
-}
-
-int		get_min_node(t_info *io)
-{
-	unsigned int min;
-	int i;
-	int node_value;
-	t_node *stack_a;
-
-	stack_a = io->a;
-	min = 2147483648;
-	while (stack_a)
-	{
-		if (min > (stack_a->cost_move + stack_a->cost_sort))
-		{
-			min = (stack_a->cost_move + stack_a->cost_sort);
-			node_value = stack_a->data;
-		}
-		stack_a = stack_a->next;
-	}
-	return (node_value);
-}
-
-void	raise_node(t_info *io)
-{
-	t_node *stack_a;
-	int min_node_value;
-	int i;
-	int count;
-
-	count = 0;
-	min_node_value = get_min_node(io);
-	ft_printf("min node: %d\n", min_node_value);
-	stack_a = io->a;
-	while (min_node_value != stack_a->data)
-		stack_a = stack_a->next;
-	if (stack_a->reverse_move)
-	{
-		if (stack_a->reverse_sort == 1)
-		{
-			if (stack_a->cost_move > stack_a->cost_sort)
-			{
-				count = stack_a->cost_sort;
-				stack_a->rr_count = count;
-				stack_a->cost_move -= count;
-				while (count--)
-					command(io, "rrr");
-				while (stack_a->cost_move--)
-					command(io, "rra");
-			}
+			if (io->b->size >= 2 && io->b->top->data
+				< io->b->top->next->data)
+				command(io, "ss");
 			else
-			{
-				count = stack_a->cost_move;
-				stack_a->rr_count = count;
-				stack_a->cost_move -= count;
-				while (count--)
-					command(io, "rrr");
-			}
-		}
-		else
-		{
-			while (stack_a->cost_move--)
-				command(io, "rra");
+				command(io, "sa");
 		}
 	}
+}
+
+void	small_sort_b(t_info *io, int size)
+{
+	if (size == 3)
+		mini_sort_3_b(io);
 	else
 	{
-		if (stack_a->reverse_sort == 1)
+		if (size == 2)
 		{
-			while (stack_a->cost_move--)
-				command(io, "ra");
-		}
-		else
-		{
-			if (stack_a->cost_move > stack_a->cost_sort)
+			if (io->b->size >= 2 && io->b->top->data
+				< io->b->top->next->data)
 			{
-				count = stack_a->cost_sort;
-				stack_a->rr_count = count;
-				stack_a->cost_move -= count;
-				while (count--)
-					command(io, "rr");
-				while (stack_a->cost_move--)
-					command(io, "ra");
+				if (io->a->size >= 2 && io->a->top->data
+					> io->a->top->next->data)
+					command(io, "ss");
+				else
+					command(io, "sb");
 			}
-			else
-			{
-				count = stack_a->cost_move;
-				stack_a->rr_count = count;
-				stack_a->cost_move -= count;
-				while (count--)
-					command(io, "rr");
-			}
+			command(io, "pa");
 		}
-
+		command(io, "pa");
 	}
 }
 
-void	sort_node(t_info *io)
+void	init_solve(t_solve *sol, t_deque *deq, int size)
 {
-	int count;
-	int reverse;
-	int ra_count;
+	int		*arr;
 
-	ra_count = 0;
-	reverse = io->a->reverse_sort;
+	arr = make_arr(deq, size);
+	quick_sort(arr, 0, size - 1);
+	sol->pivot1 = arr[(size - 1) / 3];
+	sol->pivot2 = arr[(size - 1) / 3 * 2];
+	sol->pa = 0;
+	sol->pb = 0;
+	sol->ra = 0;
+	sol->rb = 0;
+	free(arr);
+}
 
-	if (reverse == 1)
+void	resize_rotate(t_info *info, int *ra, int *rb, int *rrr)
+{
+	if (*ra != 0)
+		*ra %= info->a->size;
+	if (*rb != 0)
+		*rb %= info->b->size;
+	if (*ra < *rb)
+		*rrr = *ra;
+	else
+		*rrr = *rb;
+	*ra -= *rrr;
+	*rb -= *rrr;
+}
+
+void	re_rotate(t_info *io, int ra_size, int rb_size)
+{
+	int	rrr;
+
+	resize_rotate(io, &ra_size, &rb_size, &rrr);
+	if (io->a->size / 2 < ra_size && io->b->size / 2 < rb_size)
 	{
-		count = io->a->cost_sort - io->a->rr_count;
-		while (count--)
-		{
-			command(io, "rrb");
-			ra_count++;
-		}
-		command(io, "pb");
-		ra_count++;
-		ra_count += io->a->rr_count;
-		while (ra_count--)
+		ra_size = io->a->size - ra_size;
+		rb_size = io->b->size - rb_size;
+		while (rrr--)
+			command(io, "rr");
+		while (ra_size-- > 0)
+			command(io, "ra");
+		while (rb_size-- > 0)
 			command(io, "rb");
 	}
 	else
 	{
-		count = io->a->cost_sort - io->a->rr_count;
-		if (io->a->cost_sort == 2)
-		{
-			command(io, "pb");
-			command(io, "sb");
-		}
+		while (rrr--)
+			command(io, "rrr");
+		while (ra_size-- > 0)
+			command(io, "rra");
+		while (rb_size-- > 0)
+			command(io, "rrb");
+	}
+}
+
+void	b_to_a(t_info *io, int size)
+{
+	t_solve	sol;
+
+	if (size <= 3)
+	{
+		small_sort_b(io, size);
+		return ;
+	}
+	init_solve(&sol, io->b, size);
+	while (size--)
+	{
+		if (io->b->top->data < sol.pivot1)
+			sol.rb += command(io, "rb");
 		else
 		{
-			while (count--)
-			{
-				command(io, "rb");
-				ra_count++;
-			}
-			ra_count += io->a->rr_count;
-			command(io, "pb");
-			while (ra_count--)
-				command(io, "rrb");
+			sol.pa += command(io, "pa");
+			if (io->a->top->data < sol.pivot2)
+				sol.ra += command(io, "ra");
 		}
 	}
+	a_to_b(io, sol.pa - sol.ra);
+	re_rotate(io, sol.ra, sol.rb);
+	a_to_b(io, sol.ra);
+	b_to_a(io, sol.rb);
+}
+
+void	a_to_b(t_info *io, int size)
+{
+	t_solve	sol;
+
+	if (size <= 3)
+	{              
+		small_sort_a(io, size);
+		return ;
+	}
+	init_solve(&sol, io->a, size);
+	while (size--)
+	{
+		if (io->a->top->data >= sol.pivot2)
+			sol.ra += command(io, "ra");
+		else
+		{
+			sol.pb += command(io, "pb");
+			if (io->b->top->data >= sol.pivot1)
+				sol.rb += command(io, "rb");
+		}
+	}
+	re_rotate(io, sol.ra, sol.rb);
+	a_to_b(io, sol.ra);
+	b_to_a(io, sol.rb);
+	b_to_a(io, sol.pb - sol.rb);
 }

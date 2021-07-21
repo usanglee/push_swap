@@ -6,8 +6,8 @@ int main()
 {
     t_info io;
 
-    io.a = ft_salloc(1, sizeof(t_deque));
-    io.b = ft_salloc(1, sizeof(t_deque));
+    io.a = ext_malloc(1, sizeof(t_deque));
+    io.b = ext_malloc(1, sizeof(t_deque));
 
     
     push_back(io.a, node_new(1));

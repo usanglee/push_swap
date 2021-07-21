@@ -21,18 +21,21 @@ RM = rm -f
 FILE = 	main\
 		list\
 		command\
-		command_both\
 		etc\
 		argument\
 		check\
 		make\
 		sort_arr\
-		# sort
+		mini_sort_3_a\
+		mini_sort_3_b\
+		sort\
+		command_both
 
 TEST = 	test\
 		list\
 		etc\
-		command
+		command\
+
 # FILE_C = checker
 
 
@@ -68,7 +71,7 @@ clean:
 	make -C ./libft clean
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_T)
-	$(RM) a.out
+	# $(RM) a.out
 
 fclean: clean
 	$(RM) $(NAME)

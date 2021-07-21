@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	make_list(t_info *io)
+void	make_deque(t_info *io)
 {
 	int i;
 	long long num;
@@ -17,28 +17,19 @@ void	make_list(t_info *io)
 	two_arr_free(io->split);
 }
 
-void	make_arr(t_info *io)
+int		*make_arr(t_deque *deq, int size)
 {
-	int i;
-	int sort_flag;
-	int before;
 	t_node *temp;
+	int i;
+	int *arr;
 
-	temp = io->a->top;
-	io->arr = (int *)malloc(sizeof(int) * io->len_arg);
-	sort_flag = 1;
-	before = -2147483648;
+	temp = deq->top;
+	arr = (int *)malloc(sizeof(int) * size);
 	i = 0;
-	while (i < io->len_arg)
+	while (i < size)
 	{
-		if (before == temp->data)
-			print_error("check_duplicate");
-		if (before > temp->data)
-			sort_flag = 0;
-		before = temp->data;
-		io->arr[i++] = temp->data;
+		arr[i++] = temp->data;
 		temp = temp->next;
 	}
-	if (sort_flag)
-		exit(1);
+	return (arr);
 }

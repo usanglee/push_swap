@@ -6,14 +6,14 @@ void	print_error(char *str)
 	exit(1);
 }
 
-void	*ft_salloc(size_t n, size_t size)
+void	*ext_malloc(size_t n, size_t size)
 {
 	void	*ret;
 
 	ret = (char *)malloc(size * n);
 	if (!ret)
 		print_error("malloc error");
-	ft_memset(ret, 0, (n * size));
+	ft_bzero(ret, (n * size));
 	return (ret);
 }
 

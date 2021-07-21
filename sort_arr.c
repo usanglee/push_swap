@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sort_arr(int *arr, int left, int right)
+void	quick_sort(int *arr, int left, int right)
 {
 	int i;
 	int j;
@@ -26,7 +26,7 @@ void	sort_arr(int *arr, int left, int right)
         }
 	}
     if (left < j)
-        sort_arr(arr, left, j);
+        quick_sort(arr, left, j);
     if (i < right)
-        sort_arr(arr, i, right);
+        quick_sort(arr, i, right);
 }

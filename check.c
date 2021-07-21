@@ -75,36 +75,21 @@ void		check_duplicate(t_info *io)
 	}
 }
 
-int		check_sort(t_node *li)
+int		check_sort(t_deque *deq)
 {
 	int			i;
 	long long	before;
+	t_node		*temp;
 
 	i = 0;
 	before = -2147483649;
-	while (li)
+	temp = deq->top;
+	while (temp)
 	{
-		if (before > li->data)
+		if (before > temp->data)
 			return (0);
-		before = li->data;
-		li = li->next;
-	}
-	return (1);
-}
-
-int		r_check_sort(t_node *li)
-{
-	int			i;
-	long long	before;
-
-	i = 0;
-	before = 2147483648;
-	while (li)
-	{
-		if (before < li->data)
-			return (0);
-		before = li->data;
-		li = li->next;
+		before = temp->data;
+		temp = temp->next;
 	}
 	return (1);
 }

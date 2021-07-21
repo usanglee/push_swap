@@ -4,7 +4,7 @@ t_node	*node_new(int num)
 {
 	t_node *node;
 
-	node = ft_salloc(1, sizeof(t_node));
+	node = ext_malloc(1, sizeof(t_node));
 	node->data = num;
 	node->prev = NULL;
 	node->next = NULL;
@@ -33,7 +33,7 @@ void	push_back(t_deque *deque, t_node *node)
 {
 	if (deque == NULL || node == NULL)
 		return ;
-	if (deque->top == NULL || deque->bottom == NULL)
+	if (deque->size == 0)
 	{
 		deque->top = node;
 		deque->bottom = node;
@@ -51,7 +51,7 @@ void	remove_front(t_deque *deque)
 {
 	if (deque == NULL)
 		return ;
-	if (deque->top == deque->bottom)
+	if (deque->size == 1)
 	{
 		deque->top = NULL;
 		deque->bottom = NULL;
@@ -67,7 +67,7 @@ void	remove_back(t_deque *deque)
 {
 	if (deque == NULL)
 		return ;
-	if (deque->top == deque->bottom)
+	if (deque->size == 1)
 	{
 		deque->top = NULL;
 		deque->bottom = NULL;
