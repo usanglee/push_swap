@@ -6,7 +6,7 @@
 #    By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/24 20:21:55 by ulee              #+#    #+#              #
-#    Updated: 2021/07/22 23:47:42 by ulee             ###   ########.fr        #
+#    Updated: 2021/07/23 02:56:40 by ulee             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,9 @@ OBJS_C = $(addprefix ./, $(addsuffix .o, $(CHECKER)))
 %.o: %.c
 	$(CC) $(INCS) -c $< -o $@
 
-$(NAME) : $(OBJS) $(NAME_C)
+all : $(NAME) $(NAME_C)
+
+$(NAME) : $(OBJS)
 	make -C ./libft
 	$(CC) $(LIBFT) $(OBJS) -o $@
 
@@ -59,19 +61,15 @@ $(NAME_C) : $(OBJS_C)
 	make -C ./libft
 	$(CC) $(LIBFT) $(OBJS_C) -o $@
 
-all : $(NAME)
-
-bonus : $(NAME_C)
-
 clean:
 	make -C ./libft clean
 	$(RM) $(OBJS)
 	$(RM) $(OBJS_C)
 
 fclean: clean
+	make -C ./libft fclean
 	$(RM) $(NAME)
 	$(RM) $(NAME_C)
-	$(RM) ./libft/libft.a
 
 re: clean all
 

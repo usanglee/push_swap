@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:21:35 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/22 23:38:53 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/23 02:58:24 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,6 @@ int	command(t_info *io, char *str)
 	else if (!ft_strcmp(str, "rr"))
 		rotate_both(io, 1);
 	else
-		print_error("command");
+		print_error();
 	return (1);
 }

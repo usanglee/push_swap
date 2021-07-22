@@ -6,15 +6,15 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:21:57 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/23 00:42:07 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/23 02:58:32 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_error(char *str)
+void	print_error(void)
 {
-	ft_printf("Error\nfrom %s", str);
+	ft_printf("Error\n");
 	exit(1);
 }
 
@@ -24,7 +24,7 @@ void	*ext_malloc(size_t n, size_t size)
 
 	ret = (char *)malloc(size * n);
 	if (!ret)
-		print_error("malloc error");
+		print_error();
 	ft_bzero(ret, (n * size));
 	return (ret);
 }

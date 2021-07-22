@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:21:30 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/23 00:27:08 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/23 02:58:19 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	make_deque(t_info *io)
 	{
 		num = ft_atol(io->split[i]);
 		if (num < -2147483648 || num > 2147483647)
-			print_error("make_list");
+			print_error();
 		push_back(io->a, node_new((int)num));
 		i++;
 	}

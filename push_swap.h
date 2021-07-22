@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 20:54:16 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/23 00:28:01 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/23 02:57:42 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void		small_sort_132_b(t_info *io);
 void		small_sort_3_b(t_info *io);
 
 // 99_etc
-void		print_error(char *str);
+void		print_error(void);
 void		*ext_malloc(size_t n, size_t size);
 void		two_arr_free(char **arr);
 
