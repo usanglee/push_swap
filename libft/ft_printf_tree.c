@@ -6,13 +6,13 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 03:00:04 by ulee              #+#    #+#             */
-/*   Updated: 2021/05/24 20:29:01 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/22 23:29:47 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			print_string(const char *str, int len)
+int	print_string(const char *str, int len)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ int			print_string(const char *str, int len)
 	return (i);
 }
 
-void		check_format(char **percent, t_flags *flags)
+void	check_format(char **percent, t_flags *flags)
 {
 	while (!ft_istype(**percent))
 	{
@@ -43,7 +43,7 @@ void		check_format(char **percent, t_flags *flags)
 		flags->zero = 0;
 }
 
-void		set_format(char *percent, t_flags *flags, va_list ap)
+void	set_format(char *percent, t_flags *flags, va_list ap)
 {
 	int		len;
 
@@ -53,7 +53,7 @@ void		set_format(char *percent, t_flags *flags, va_list ap)
 	set_width(flags, len);
 }
 
-int			print_format(char *percent, t_flags *flags)
+int	print_format(char *percent, t_flags *flags)
 {
 	int		len;
 

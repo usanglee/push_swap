@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   06_command.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/22 23:21:35 by ulee              #+#    #+#             */
+/*   Updated: 2021/07/22 23:38:53 by ulee             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap(t_deque *deque, int flag)
 {
-	t_node *top_node;
+	t_node	*top_node;
 
 	if (deque == NULL)
 		return ;
@@ -69,14 +81,14 @@ void	reverse(t_deque *deque, int flag)
 		ft_printf("rrb\n");
 }
 
-int		command(t_info *io, char *str)
+int	command(t_info *io, char *str)
 {
 	if (!ft_strcmp(str, "sa"))
 		swap(io->a, 'a');
 	else if (!ft_strcmp(str, "sb"))
 		swap(io->b, 'b');
 	else if (!ft_strcmp(str, "ss"))
-		swap_both(io);
+		swap_both(io, 1);
 	else if (!ft_strcmp(str, "pa"))
 		push(io->b, io->a, 'a');
 	else if (!ft_strcmp(str, "pb"))
@@ -86,13 +98,13 @@ int		command(t_info *io, char *str)
 	else if (!ft_strcmp(str, "rrb"))
 		reverse(io->b, 'b');
 	else if (!ft_strcmp(str, "rrr"))
-		reverse_both(io);
+		reverse_both(io, 1);
 	else if (!ft_strcmp(str, "ra"))
 		rotate(io->a, 'a');
 	else if (!ft_strcmp(str, "rb"))
 		rotate(io->b, 'b');
 	else if (!ft_strcmp(str, "rr"))
-		rotate_both(io);
+		rotate_both(io, 1);
 	else
 		print_error("command");
 	return (1);

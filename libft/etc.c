@@ -6,13 +6,13 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 02:46:27 by ulee              #+#    #+#             */
-/*   Updated: 2021/05/24 20:28:39 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/22 23:30:20 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_istype(int c)
+int	ft_istype(int c)
 {
 	int		i;
 	int		flag;
@@ -30,7 +30,7 @@ int			ft_istype(int c)
 	return (flag);
 }
 
-int			check_len(long long n, t_flags *flags)
+int	check_len(long long n, t_flags *flags)
 {
 	int		len;
 
@@ -51,7 +51,7 @@ int			check_len(long long n, t_flags *flags)
 	return (len);
 }
 
-int			check_hexlen(long long n, t_flags *flags)
+int	check_hexlen(long long n, t_flags *flags)
 {
 	int		len;
 
@@ -66,7 +66,7 @@ int			check_hexlen(long long n, t_flags *flags)
 	return (len);
 }
 
-int			check_strlen(t_flags *flags)
+int	check_strlen(t_flags *flags)
 {
 	int		len;
 
@@ -90,7 +90,7 @@ int			check_strlen(t_flags *flags)
 	return (len);
 }
 
-void		delete_multiflag(t_flags *flags)
+void	delete_multiflag(t_flags *flags)
 {
 	if (flags->minus > 1)
 		flags->minus = 0;

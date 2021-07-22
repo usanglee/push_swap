@@ -6,13 +6,13 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 02:42:13 by ulee              #+#    #+#             */
-/*   Updated: 2021/05/24 20:30:15 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/22 23:28:30 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		set_star(va_list ap, t_flags *flags)
+void	set_star(va_list ap, t_flags *flags)
 {
 	int		arg;
 
@@ -34,7 +34,7 @@ void		set_star(va_list ap, t_flags *flags)
 	}
 }
 
-void		set_arg(char *percent, t_flags *flags, va_list ap)
+void	set_arg(char *percent, t_flags *flags, va_list ap)
 {
 	if (*percent == 's')
 	{
@@ -52,7 +52,7 @@ void		set_arg(char *percent, t_flags *flags, va_list ap)
 		flags->arg = -1;
 }
 
-int			set_len(char *percent, t_flags *flags)
+int	set_len(char *percent, t_flags *flags)
 {
 	int		len;
 
@@ -73,7 +73,7 @@ int			set_len(char *percent, t_flags *flags)
 	return (len);
 }
 
-void		set_width(t_flags *flags, int len)
+void	set_width(t_flags *flags, int len)
 {
 	if (flags->minus)
 		flags->width--;

@@ -1,45 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   08_sort.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/22 23:21:41 by ulee              #+#    #+#             */
+/*   Updated: 2021/07/23 01:03:17 by ulee             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-void	small_sort_a(t_info *io, int size)
-{
-	if (size == 3)
-		mini_sort_3_a(io);
-	else if (size == 2)
-	{
-		if (io->a->size >= 2 && io->a->top->data
-			> io->a->top->next->data)
-		{
-			if (io->b->size >= 2 && io->b->top->data
-				< io->b->top->next->data)
-				command(io, "ss");
-			else
-				command(io, "sa");
-		}
-	}
-}
-
-void	small_sort_b(t_info *io, int size)
-{
-	if (size == 3)
-		mini_sort_3_b(io);
-	else
-	{
-		if (size == 2)
-		{
-			if (io->b->size >= 2 && io->b->top->data
-				< io->b->top->next->data)
-			{
-				if (io->a->size >= 2 && io->a->top->data
-					> io->a->top->next->data)
-					command(io, "ss");
-				else
-					command(io, "sb");
-			}
-			command(io, "pa");
-		}
-		command(io, "pa");
-	}
-}
 
 void	init_solve(t_solve *sol, t_deque *deq, int size)
 {
@@ -56,12 +27,12 @@ void	init_solve(t_solve *sol, t_deque *deq, int size)
 	free(arr);
 }
 
-void	resize_rotate(t_info *info, int *ra, int *rb, int *rrr)
+void	set_rrr_count(t_info *io, int *ra, int *rb, int *rrr)
 {
 	if (*ra != 0)
-		*ra %= info->a->size;
+		*ra = *ra % io->a->size;
 	if (*rb != 0)
-		*rb %= info->b->size;
+		*rb = *rb % io->b->size;
 	if (*ra < *rb)
 		*rrr = *ra;
 	else
@@ -70,11 +41,11 @@ void	resize_rotate(t_info *info, int *ra, int *rb, int *rrr)
 	*rb -= *rrr;
 }
 
-void	re_rotate(t_info *io, int ra_size, int rb_size)
+void	raise_rotate(t_info *io, int ra_size, int rb_size)
 {
 	int	rrr;
 
-	resize_rotate(io, &ra_size, &rb_size, &rrr);
+	set_rrr_count(io, &ra_size, &rb_size, &rrr);
 	if (io->a->size / 2 < ra_size && io->b->size / 2 < rb_size)
 	{
 		ra_size = io->a->size - ra_size;
@@ -119,7 +90,7 @@ void	b_to_a(t_info *io, int size)
 		}
 	}
 	a_to_b(io, sol.pa - sol.ra);
-	re_rotate(io, sol.ra, sol.rb);
+	raise_rotate(io, sol.ra, sol.rb);
 	a_to_b(io, sol.ra);
 	b_to_a(io, sol.rb);
 }
@@ -129,7 +100,7 @@ void	a_to_b(t_info *io, int size)
 	t_solve	sol;
 
 	if (size <= 3)
-	{              
+	{
 		small_sort_a(io, size);
 		return ;
 	}
@@ -145,7 +116,7 @@ void	a_to_b(t_info *io, int size)
 				sol.rb += command(io, "rb");
 		}
 	}
-	re_rotate(io, sol.ra, sol.rb);
+	raise_rotate(io, sol.ra, sol.rb);
 	a_to_b(io, sol.ra);
 	b_to_a(io, sol.rb);
 	b_to_a(io, sol.pb - sol.rb);

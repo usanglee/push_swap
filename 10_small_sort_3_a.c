@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_sort_3_a.c                                    :+:      :+:    :+:   */
+/*   10_small_sort_3_a.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhyeon <dhyeon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 20:46:05 by dhyeon            #+#    #+#             */
-/*   Updated: 2021/05/21 15:21:32 by dhyeon           ###   ########.fr       */
+/*   Created: 2021/07/22 23:21:47 by ulee              #+#    #+#             */
+/*   Updated: 2021/07/22 23:40:30 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	mini_sort_132_a(t_info *io)
+void	small_sort_132_a(t_info *io)
 {
 	if (io->a->size == 3)
 	{
@@ -27,7 +27,7 @@ void	mini_sort_132_a(t_info *io)
 	}
 }
 
-void	mini_sort_231_a(t_info *io)
+void	small_sort_231_a(t_info *io)
 {
 	if (io->a->size == 3)
 	{
@@ -42,7 +42,7 @@ void	mini_sort_231_a(t_info *io)
 	}
 }
 
-void	mini_sort_312_a(t_info *io)
+void	small_sort_312_a(t_info *io)
 {
 	if (io->a->size == 3)
 		command(io, "ra");
@@ -55,7 +55,7 @@ void	mini_sort_312_a(t_info *io)
 	}
 }
 
-void	mini_sort_321_a(t_info *io)
+void	small_sort_321_a(t_info *io)
 {
 	if (io->a->size == 3)
 	{
@@ -72,23 +72,23 @@ void	mini_sort_321_a(t_info *io)
 	}
 }
 
-void	mini_sort_3_a(t_info *io)
+void	small_sort_3_a(t_info *io)
 {
-	int	rank[3];
+	int	data[3];
 
-	rank[0] = io->a->top->data;
-	rank[1] = io->a->top->next->data;
-	rank[2] = io->a->top->next->next->data;
-	if (rank[0] < rank[1] && rank[0] < rank[2] && rank[1] < rank[2])
+	data[0] = io->a->top->data;
+	data[1] = io->a->top->next->data;
+	data[2] = io->a->top->next->next->data;
+	if (data[0] < data[1] && data[0] < data[2] && data[1] < data[2])
 		return ;
-	else if (rank[0] > rank[1] && rank[0] < rank[2] && rank[1] < rank[2])
+	else if (data[0] > data[1] && data[0] < data[2] && data[1] < data[2])
 		command(io, "sa");
-	else if (rank[0] < rank[1] && rank[0] < rank[2] && rank[1] > rank[2])
-		mini_sort_132_a(io);
-	else if (rank[0] < rank[1] && rank[0] > rank[2] && rank[1] > rank[2])
-		mini_sort_231_a(io);
-	else if (rank[0] > rank[1] && rank[0] > rank[2] && rank[1] < rank[2])
-		mini_sort_312_a(io);
+	else if (data[0] < data[1] && data[0] < data[2] && data[1] > data[2])
+		small_sort_132_a(io);
+	else if (data[0] < data[1] && data[0] > data[2] && data[1] > data[2])
+		small_sort_231_a(io);
+	else if (data[0] > data[1] && data[0] > data[2] && data[1] < data[2])
+		small_sort_312_a(io);
 	else
-		mini_sort_321_a(io);
+		small_sort_321_a(io);
 }

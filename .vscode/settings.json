@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "push_swap.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "random": "c",
+        "type_traits": "c"
     }
 }

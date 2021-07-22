@@ -6,7 +6,7 @@
 #    By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/24 20:21:55 by ulee              #+#    #+#              #
-#    Updated: 2021/06/07 19:51:01 by ulee             ###   ########.fr        #
+#    Updated: 2021/07/22 23:47:42 by ulee             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,50 +18,46 @@ INCS = -I./libft -I./
 LIBFT = -L./libft -lft
 RM = rm -f
 
-FILE = 	main\
-		list\
-		command\
-		etc\
-		argument\
-		check\
-		make\
-		sort_arr\
-		mini_sort_3_a\
-		mini_sort_3_b\
-		sort\
-		command_both
+FILE = 	00_main\
+		01_node_io\
+		02_argument\
+		03_check\
+		04_make\
+		05_quick_sort\
+		06_command\
+		07_command_both\
+		08_sort\
+		09_small_sort\
+		10_small_sort_3_a\
+		11_small_sort_3_b\
+		99_etc
 
-TEST = 	test\
-		list\
-		etc\
-		command\
-
-# FILE_C = checker
-
+CHECKER = 	checker\
+			01_node_io\
+			02_argument\
+			03_check\
+			04_make\
+			05_quick_sort\
+			06_command\
+			07_command_both\
+			99_etc
 
 SRCS = $(addprefix ./, $(addsuffix .c, $(FILE)))
 OBJS = $(addprefix ./, $(addsuffix .o, $(FILE)))
 
-SRCS_T = $(addprefix ./, $(addsuffix .c, $(TEST)))
-OBJS_T = $(addprefix ./, $(addsuffix .o, $(TEST)))
-
-# SRCS_C = $(addprefix ./, $(addsuffix .c, $(FILE_C)))
-# OBJS_C = $(addprefix ./, $(addsuffix .o, $(FILE_C)))
+SRCS_C = $(addprefix ./, $(addsuffix .c, $(CHECKER)))
+OBJS_C = $(addprefix ./, $(addsuffix .o, $(CHECKER)))
 
 %.o: %.c
 	$(CC) $(INCS) -c $< -o $@
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(NAME_C)
 	make -C ./libft
 	$(CC) $(LIBFT) $(OBJS) -o $@
 
 $(NAME_C) : $(OBJS_C)
 	make -C ./libft
 	$(CC) $(LIBFT) $(OBJS_C) -o $@
-
-test : $(OBJS_T)
-	make -C ./libft
-	$(CC) $(LIBFT) $(OBJS_T) -o a.out
 
 all : $(NAME)
 
@@ -70,12 +66,11 @@ bonus : $(NAME_C)
 clean:
 	make -C ./libft clean
 	$(RM) $(OBJS)
-	$(RM) $(OBJS_T)
-	# $(RM) a.out
+	$(RM) $(OBJS_C)
 
 fclean: clean
 	$(RM) $(NAME)
-	# $(RM) $(NAME_C)
+	$(RM) $(NAME_C)
 	$(RM) ./libft/libft.a
 
 re: clean all

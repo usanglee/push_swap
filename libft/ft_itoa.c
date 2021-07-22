@@ -6,13 +6,13 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 20:18:55 by ulee              #+#    #+#             */
-/*   Updated: 2021/05/24 20:28:08 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/22 23:31:39 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				itoa_len(int num)
+int	itoa_len(int num)
 {
 	int			len;
 
@@ -27,7 +27,7 @@ int				itoa_len(int num)
 	return (len);
 }
 
-char			*ft_itoa(int num)
+char	*ft_itoa(int num)
 {
 	char		*result;
 	long long	num_cast;

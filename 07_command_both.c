@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   07_command_both.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 20:19:30 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/22 23:31:05 by ulee             ###   ########.fr       */
+/*   Created: 2021/07/22 23:21:37 by ulee              #+#    #+#             */
+/*   Updated: 2021/07/22 23:21:38 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_memcpy(void *copy, const void *origin, size_t byte_size)
+void	swap_both(t_info *io, int c)
 {
-	size_t	i;
+	swap(io->a, ' ');
+	swap(io->b, ' ');
+	if (c == 1)
+		ft_printf("ss\n");
+}
 
-	if (copy == NULL && origin == NULL)
-		return (copy);
-	i = 0;
-	while (i < byte_size)
-	{
-		((unsigned char *)copy)[i] = ((const unsigned char *)origin)[i];
-		i++;
-	}
-	return (copy);
+void	rotate_both(t_info *io, int c)
+{
+	rotate(io->a, ' ');
+	rotate(io->b, ' ');
+	if (c == 1)
+		ft_printf("rr\n");
+}
+
+void	reverse_both(t_info *io, int c)
+{
+	reverse(io->a, ' ');
+	reverse(io->b, ' ');
+	if (c == 1)
+		ft_printf("rrr\n");
 }

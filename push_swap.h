@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 20:54:16 by ulee              #+#    #+#             */
-/*   Updated: 2021/06/07 21:47:25 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/23 00:28:01 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,108 +14,109 @@
 # define PUSH_SWAP_H
 # include "libft/libft.h"
 
-typedef struct		s_node
+typedef struct s_node
 {
 	int				data;
 	struct s_node	*prev;
 	struct s_node	*next;
 }					t_node;
 
-typedef struct		s_deque
+typedef struct s_deque
 {
-	t_node	*top;
-	t_node	*bottom;
+	t_node			*top;
+	t_node			*bottom;
 	int				size;
 }					t_deque;
 
-typedef struct		s_solve
+typedef struct s_solve
 {
-	int pivot1;
-	int pivot2;
-	int ra;
-	int rb;
-	int pa;
-	int pb;
+	int		pivot1;
+	int		pivot2;
+	int		ra;
+	int		rb;
+	int		pa;
+	int		pb;
 }					t_solve;
 
-typedef struct		s_info
+typedef struct s_info
 {
-	t_deque		*a;
-	t_deque		*b;
-	char		**split;
-	int			len_arg;
-	int			*arr;
+	t_deque			*a;
+	t_deque			*b;
+	char			**split;
+	int				len_arg;
+	int				*arr;
 }					t_info;
 
-t_node	*node_new(int num);
-t_node	*list_last(t_node *li);
-void	list_add(t_node **li, t_node *new);
+// 01_node_io
+t_node		*node_new(int num);
+void		push_front(t_deque *deque, t_node *node);
+void		push_back(t_deque *deque, t_node *node);
+void		remove_front(t_deque *deque);
+void		remove_back(t_deque *deque);
 
-void	swap(t_deque *deque, int flag);
+// 02_argument
+void		ac_2(t_info *io, char *av2);
+void		ac_many(t_info *io, int len, char **av2);
 
-void	push(t_deque *src, t_deque *dest, int flag);
+// 03_check
+void		check_isdigit(char **split);
+void		check_duplicate(t_info *io);
+int			check_sort(t_deque *deq);
 
-void	rotate(t_deque *deque, int flag);
-void	reverse(t_deque *deque, int flag);
-int		command(t_info *io, char *str);
+// 04_make
+int			is_space(int c);
+long long	ft_atol(const char *str);
+void		make_deque(t_info *io);
+int			*make_arr(t_deque *deq, int size);
 
+// 05_quick_sort
+void		quick_sort(int *arr, int left, int right);
 
-void	swap_both(t_info *io);
-void	rotate_both(t_info *io);
-void	reverse_both(t_info *io);
+// 06_command
+void		swap(t_deque *deque, int flag);
+void		push(t_deque *src, t_deque *dest, int flag);
+void		rotate(t_deque *deque, int flag);
+void		reverse(t_deque *deque, int flag);
+int			command(t_info *io, char *str);
 
-void	print_error(char *str);
+// 07_command_both
+void		swap_both(t_info *io, int c);
+void		rotate_both(t_info *io, int c);
+void		reverse_both(t_info *io, int c);
 
-void	ac_2(t_info *io, char *av2);
-void	ac_many(t_info *io, int len, char **av2);
+// 08_sort
+void		init_solve(t_solve *sol, t_deque *deq, int size);
+void		set_rrr_count(t_info *io, int *ra, int *rb, int *rrr);
+void		raise_rotate(t_info *io, int ra_size, int rb_size);
+void		b_to_a(t_info *io, int size);
+void		a_to_b(t_info *io, int size);
 
-int		ft_atol(const char *str);
-void	check_isdigit(char **split);
-int		check_sort(t_deque *deq);
-int		r_check_sort(t_node *li);
+// 09_small_sort
+void		small_sort_a(t_info *io, int size);
+void		small_sort_b(t_info *io, int size);
 
-void	make_deque(t_info *io);
-int		*make_arr(t_deque *deq, int size);
+// 10_small_sort_3_a
+void		small_sort_132_a(t_info *io);
+void		small_sort_231_a(t_info *io);
+void		small_sort_312_a(t_info *io);
+void		small_sort_321_a(t_info *io);
+void		small_sort_3_a(t_info *io);
 
-void	two_arr_free(char **arr);
-void	check_duplicate(t_info *io);
+// 11_small_sort_3_b
+void		small_sort_123_b(t_info *io);
+void		small_sort_213_b(t_info *io);
+void		small_sort_132_b(t_info *io);
+void		small_sort_3_b(t_info *io);
 
-void	quick_sort(int *arr, int left, int right);
+// 99_etc
+void		print_error(char *str);
+void		*ext_malloc(size_t n, size_t size);
+void		two_arr_free(char **arr);
 
-void	sort(t_info *io);
-int		list_len(t_node *li);
-
-void	set_cost_move(t_info *io);
-void	set_cost_sort(t_info *io);
-int		get_min_node(t_info *io);
-void	raise_node(t_info *io);
-void	sort_node(t_info *io);
-
-void	*ext_malloc(size_t n, size_t size);
-
-t_node	*node_new(int num);
-
-void	push_front(t_deque *deque, t_node *node);
-void	push_back(t_deque *deque, t_node *node);
-void	remove_front(t_deque *deque);
-void	remove_back(t_deque *deque);
-
-void	b_to_a(t_info *info, int size);
-void	a_to_b(t_info *info, int size);
-
-
-void 	sort_arr(t_info *io);
-
-void	mini_sort_132_a(t_info *io);
-void	mini_sort_231_a(t_info *io);
-void	mini_sort_312_a(t_info *io);
-void	mini_sort_321_a(t_info *io);
-void	mini_sort_3_a(t_info *io);
-
-void	mini_sort_123_b(t_info *io);
-void	mini_sort_213_b(t_info *io);
-void	mini_sort_132_b(t_info *io);
-void	mini_sort_3_b(t_info *io);
-
+// checker
+void		init_deque(t_info *io);
+int			pre_launch(t_info *io);
+void		print_ok_ko(t_info *io, int rd);
+int			command_checker(t_info *io, char *str);
 
 #endif

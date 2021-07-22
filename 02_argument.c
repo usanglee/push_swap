@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   02_argument.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 20:19:30 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/22 23:31:05 by ulee             ###   ########.fr       */
+/*   Created: 2021/07/22 23:21:25 by ulee              #+#    #+#             */
+/*   Updated: 2021/07/22 23:33:54 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_memcpy(void *copy, const void *origin, size_t byte_size)
+void	ac_2(t_info *io, char *av)
 {
-	size_t	i;
+	int		i;
 
-	if (copy == NULL && origin == NULL)
-		return (copy);
 	i = 0;
-	while (i < byte_size)
+	io->split = ft_split(av, ' ');
+	i = 0;
+	while (io->split[i])
+		i++;
+	io->len_arg = i;
+}
+
+void	ac_many(t_info *io, int len, char **av)
+{
+	int		i;
+
+	io->split = (char **)malloc(sizeof(char *) * (len + 1));
+	io->split[len] = NULL;
+	i = 0;
+	while (av[i])
 	{
-		((unsigned char *)copy)[i] = ((const unsigned char *)origin)[i];
+		io->split[i] = ft_strdup(av[i]);
 		i++;
 	}
-	return (copy);
+	io->len_arg = len;
 }

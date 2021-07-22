@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   05_quick_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/28 21:47:47 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/22 23:31:52 by ulee             ###   ########.fr       */
+/*   Created: 2021/07/22 23:21:33 by ulee              #+#    #+#             */
+/*   Updated: 2021/07/22 23:38:34 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_strcmp(char *one, char *two)
+void	quick_sort(int *arr, int left, int right)
 {
 	int		i;
+	int		j;
+	int		pivot;
+	int		temp;
 
-	i = 0;
-	if (one == 0 || two == 0)
-		return (-1);
-	while (one[i] || two[i])
+	i = left;
+	j = right;
+	pivot = arr[(left + right) / 2];
+	while (i <= j)
 	{
-		if (one[i] != two[i])
-			return (one[i] - two[i]);
-		i++;
+		while (arr[i] < pivot)
+			i++;
+		while (arr[j] > pivot)
+			j--;
+		if (i <= j)
+		{
+			temp = arr[i];
+			arr[i++] = arr[j];
+			arr[j--] = temp;
+		}
 	}
-	if (one[i] == '\0' && two[i] == '\0')
-		return (0);
-	return (one[i] - two[i]);
+	if (left < j)
+		quick_sort(arr, left, j);
+	if (i < right)
+		quick_sort(arr, i, right);
 }

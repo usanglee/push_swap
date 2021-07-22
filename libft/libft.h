@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 18:54:17 by ulee              #+#    #+#             */
-/*   Updated: 2021/05/28 21:47:36 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/22 23:30:53 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 #  define TYPE "diucsxXp%"
 # endif
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
 
-typedef struct		s_flags
+typedef struct s_flags
 {
 	int				len;
 	int				minus;
