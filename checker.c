@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 18:45:44 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/24 21:34:49 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/25 00:42:24 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,9 @@ int	main(int ac, char **av)
 		rd = get_next_line(0, &line);
 	}
 	print_ok_ko(&io, rd);
+	deque_free(io.a);
+	deque_free(io.b);
+	free(io.a);
+	free(io.b);
 	return (0);
 }

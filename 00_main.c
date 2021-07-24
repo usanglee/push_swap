@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:21:16 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/25 00:24:00 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/25 00:42:27 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ int	main(int ac, char **av)
 		return (0);
 	free(io.arr);
 	a_to_b(&io, io.a->size);
-	// while (io.a->top)
-	// {
-	// 	ft_printf("%d\n", io.a->top->data);
-	// 	io.a->top = io.a->top->next;
-	// }
 	deque_free(io.a);
 	free(io.a);
 	free(io.b);
