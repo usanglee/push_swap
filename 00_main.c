@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:21:16 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/23 00:43:41 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/24 18:59:29 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_info	io;
+	t_node	*temp;
 
 	io.a = ext_malloc(1, sizeof(t_deque));
 	io.b = ext_malloc(1, sizeof(t_deque));
@@ -31,6 +32,23 @@ int	main(int ac, char **av)
 	check_duplicate(&io);
 	if (check_sort(io.a) == 1)
 		return (0);
+	free(io.arr);
 	a_to_b(&io, io.a->size);
+	while (io.a->top)
+	{
+		ft_printf("%d\n", io.a->top->data);
+		io.a->top = io.a->top->next;
+
+	}
+	while (io.a->top)
+	{
+		temp = io.a->top->next;
+		free(io.a->top);
+		io.a->top = temp;
+	}
+	free(io.a);
+	free(io.b);
+	// free(&io);
+	// while(1){;}
 	return (0);
 }

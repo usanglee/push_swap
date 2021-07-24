@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:21:35 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/23 02:58:24 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/24 18:55:45 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,23 @@ void	swap(t_deque *deque, int flag)
 		return ;
 	if (deque->size == 0 || deque->size == 1)
 		return ;
-	top_node = deque->top;
 	if (deque->size == 2)
 	{
-		remove_front(deque);
-		push_back(deque, top_node);
+		top_node = deque->top;
+		deque->top = deque->bottom;
+		deque->bottom = top_node;
+		deque->top->prev = NULL;
+		deque->bottom->prev = deque->top;
+		deque->top->next = deque->bottom;
+		deque->bottom->next = NULL;
 		return ;
 	}
-	remove_front(deque);
+	top_node = deque->top;
+	deque->top = top_node->next;
+	deque->top->prev = NULL;
 	top_node->next = deque->top->next;
 	deque->top->next->prev = top_node;
 	deque->top->next = top_node;
-	top_node->prev = deque->top;
-	deque->size++;
 	if (flag == 'a')
 		ft_printf("sa\n");
 	else if (flag == 'b')
@@ -41,12 +45,46 @@ void	swap(t_deque *deque, int flag)
 
 void	push(t_deque *src, t_deque *dest, int flag)
 {
+	t_node	*top_node;
+
 	if (src == NULL || dest == NULL)
 		return ;
 	if (src->size == 0)
 		return ;
-	push_front(dest, node_new(src->top->data));
-	remove_front(src);
+	if (src->size == 1)
+	{
+		if (dest->size == 0)
+			dest->bottom = src->top;
+		else
+		{
+			dest->top->prev = src->top;
+			src->top->next = dest->top;
+		}
+		dest->top = src->top;
+		src->top = NULL;
+		src->bottom = NULL;
+	}
+	else
+	{
+		if (dest->size == 0)
+		{
+			dest->top = src->top;
+			dest->bottom = src->top;
+			src->top = src->top->next;
+			dest->top->next = NULL;
+		}
+		else
+		{
+			top_node = src->top;
+			src->top = src->top->next;
+			src->top->prev = NULL;
+			top_node->next = dest->top;
+			dest->top->prev = top_node;
+			dest->top = top_node;
+		}
+	}
+	src->size--;
+	dest->size++;
 	if (flag == 'a')
 		ft_printf("pa\n");
 	else if (flag == 'b')
@@ -59,8 +97,12 @@ void	rotate(t_deque *deque, int flag)
 		return ;
 	if (deque->size == 0 || deque->size == 1)
 		return ;
-	push_back(deque, node_new(deque->top->data));
-	remove_front(deque);
+	deque->top = deque->top->next;
+	deque->bottom->next = deque->top->prev;
+	deque->bottom->next->prev = deque->bottom;
+	deque->top->prev = NULL;
+	deque->bottom = deque->bottom->next;
+	deque->bottom->next = NULL;
 	if (flag == 'a')
 		ft_printf("ra\n");
 	else if (flag == 'b')
@@ -73,8 +115,12 @@ void	reverse(t_deque *deque, int flag)
 		return ;
 	if (deque->size == 0 || deque->size == 1)
 		return ;
-	push_front(deque, node_new(deque->bottom->data));
-	remove_back(deque);
+	deque->top->prev = deque->bottom;
+	deque->bottom->next = deque->top;
+	deque->bottom = deque->bottom->prev;
+	deque->bottom->next = NULL;
+	deque->top = deque->top->prev;
+	deque->top->prev = NULL;
 	if (flag == 'a')
 		ft_printf("rra\n");
 	else if (flag == 'b')

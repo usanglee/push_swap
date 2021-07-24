@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:21:53 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/22 23:40:35 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/24 19:06:56 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	three_pa(t_info *io)
 {
 	command(io, "pa");
 	command(io, "pa");
-	command(io, "sa");
+	command(io, "pa");
 }
 
 void	small_sort_123_b(t_info *io)
