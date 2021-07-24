@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 20:54:16 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/23 02:57:42 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/24 20:40:37 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,15 @@ void		small_sort_213_b(t_info *io);
 void		small_sort_132_b(t_info *io);
 void		small_sort_3_b(t_info *io);
 
+// 12_free
+void		two_arr_free(char **arr);
+void		deque_free(t_deque *deq);
+
 // 99_etc
 void		print_error(void);
 void		*ext_malloc(size_t n, size_t size);
-void		two_arr_free(char **arr);
+void		swap_2(t_deque *deque);
+void		push_general(t_deque *src, t_deque *dest);
 
 // checker
 void		init_deque(t_info *io);

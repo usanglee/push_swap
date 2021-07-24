@@ -6,7 +6,7 @@
 #    By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/24 20:21:55 by ulee              #+#    #+#              #
-#    Updated: 2021/07/24 18:57:00 by ulee             ###   ########.fr        #
+#    Updated: 2021/07/24 21:30:29 by ulee             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ FILE = 	00_main\
 		09_small_sort\
 		10_small_sort_3_a\
 		11_small_sort_3_b\
+		12_free\
 		99_etc
 
 CHECKER = 	checker\
@@ -40,6 +41,7 @@ CHECKER = 	checker\
 			05_quick_sort\
 			06_command\
 			07_command_both\
+			12_free\
 			99_etc
 
 SRCS = $(addprefix ./, $(addsuffix .c, $(FILE)))

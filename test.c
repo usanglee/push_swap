@@ -21,11 +21,8 @@ int main(int ac, char **av)
 	if (check_sort(io.a) == 1)
 		return (0);
 	free(io.arr);
-	push_back(io.b, node_new(98));
-	push_back(io.b, node_new(99));
-	push_back(io.b, node_new(100));
-	command(&io, "pb");
-	command(&io, "pa");
+	command(&io, "sa");
+	command(&io, "ra");
 	ft_printf("A ");
 	while (io.a->top)
 	{
@@ -34,11 +31,11 @@ int main(int ac, char **av)
 	}
 	ft_printf("\n");
 	ft_printf("B ");
-	while (io.b->top)
-	{
-		ft_printf("%d ", io.b->top->data);
-		io.b->top = io.b->top->next;
-	}
+	// while (io.b->top)
+	// {
+	// 	ft_printf("%d ", io.b->top->data);
+	// 	io.b->top = io.b->top->next;
+	// }
 	ft_printf("\n");
 	return (0);
 }

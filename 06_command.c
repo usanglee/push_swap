@@ -6,7 +6,7 @@
 /*   By: ulee <ulee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 23:21:35 by ulee              #+#    #+#             */
-/*   Updated: 2021/07/24 18:55:45 by ulee             ###   ########.fr       */
+/*   Updated: 2021/07/25 00:26:15 by ulee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,17 @@ void	swap(t_deque *deque, int flag)
 	if (deque->size == 0 || deque->size == 1)
 		return ;
 	if (deque->size == 2)
+		swap_2(deque);
+	else
 	{
 		top_node = deque->top;
-		deque->top = deque->bottom;
-		deque->bottom = top_node;
+		deque->top = top_node->next;
 		deque->top->prev = NULL;
-		deque->bottom->prev = deque->top;
-		deque->top->next = deque->bottom;
-		deque->bottom->next = NULL;
-		return ;
+		top_node->next = deque->top->next;
+		deque->top->next->prev = top_node;
+		deque->top->next = top_node;
+		top_node->prev = deque->top;
 	}
-	top_node = deque->top;
-	deque->top = top_node->next;
-	deque->top->prev = NULL;
-	top_node->next = deque->top->next;
-	deque->top->next->prev = top_node;
-	deque->top->next = top_node;
 	if (flag == 'a')
 		ft_printf("sa\n");
 	else if (flag == 'b')
@@ -45,8 +40,6 @@ void	swap(t_deque *deque, int flag)
 
 void	push(t_deque *src, t_deque *dest, int flag)
 {
-	t_node	*top_node;
-
 	if (src == NULL || dest == NULL)
 		return ;
 	if (src->size == 0)
@@ -65,24 +58,7 @@ void	push(t_deque *src, t_deque *dest, int flag)
 		src->bottom = NULL;
 	}
 	else
-	{
-		if (dest->size == 0)
-		{
-			dest->top = src->top;
-			dest->bottom = src->top;
-			src->top = src->top->next;
-			dest->top->next = NULL;
-		}
-		else
-		{
-			top_node = src->top;
-			src->top = src->top->next;
-			src->top->prev = NULL;
-			top_node->next = dest->top;
-			dest->top->prev = top_node;
-			dest->top = top_node;
-		}
-	}
+		push_general(src, dest);
 	src->size--;
 	dest->size++;
 	if (flag == 'a')
